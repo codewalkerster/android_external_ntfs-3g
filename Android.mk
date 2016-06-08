@@ -24,7 +24,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/include/fuse-lite
 
 LOCAL_CFLAGS := $(MY_CFLAG)
 
-LOCAL_MODULE := libfuse
+LOCAL_MODULE := libfuse-lite
 LOCAL_MODULE_TAGS := optional
 LOCAL_SYSTEM_SHARED_LIBRARIES := libc libcutils
 
@@ -97,7 +97,7 @@ LOCAL_CFLAGS := $(MY_CFLAG)
 LOCAL_MODULE := ntfs-3g
 LOCAL_MODULE_TAGS := optional
 LOCAL_SYSTEM_SHARED_LIBRARIES := libc libcutils
-LOCAL_STATIC_LIBRARIES := libfuse libntfs-3g
+LOCAL_STATIC_LIBRARIES := libfuse-lite libntfs-3g
 
 include $(BUILD_EXECUTABLE)
 
@@ -145,7 +145,7 @@ LOCAL_CFLAGS := $(MY_CFLAG)
 LOCAL_MODULE := mkntfs
 LOCAL_MODULE_TAGS := optional
 LOCAL_SYSTEM_SHARED_LIBRARIES := libc libcutils
-LOCAL_STATIC_LIBRARIES:= libntfs-3g libfuse
+LOCAL_STATIC_LIBRARIES:= libntfs-3g libfuse-lite
 
 include $(BUILD_EXECUTABLE)
 
@@ -168,7 +168,7 @@ LOCAL_CFLAGS := $(MY_CFLAG)
 LOCAL_MODULE := ntfsfix
 LOCAL_MODULE_TAGS := optional
 LOCAL_SYSTEM_SHARED_LIBRARIES := libc libcutils
-LOCAL_STATIC_LIBRARIES:= libntfs-3g libfuse
+LOCAL_STATIC_LIBRARIES:= libntfs-3g libfuse-lite
 
 include $(BUILD_EXECUTABLE)
 

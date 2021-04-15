@@ -394,6 +394,11 @@ int fuse_reply_readlink(fuse_req_t req, const char *linkname)
     return send_reply_ok(req, linkname, strlen(linkname));
 }
 
+int fuse_reply_canonical_path(fuse_req_t req, const char *path)
+{
+    return send_reply_ok(req, path, strlen(path));
+}
+
 int fuse_reply_open(fuse_req_t req, const struct fuse_file_info *f)
 {
     struct fuse_open_out arg;
@@ -555,6 +560,16 @@ static void do_readlink(fuse_req_t req, fuse_ino_t nodeid, const void *inarg)
 
     if (req->f->op.readlink)
         req->f->op.readlink(req, nodeid);
+    else
+        fuse_reply_err(req, ENOSYS);
+}
+
+static void do_canonical_path(fuse_req_t req, fuse_ino_t nodeid, const void *inarg)
+{
+    (void) inarg;
+
+    if (req->f->op.canonical_path)
+        req->f->op.canonical_path(req, nodeid);
     else
         fuse_reply_err(req, ENOSYS);
 }
@@ -1240,6 +1255,7 @@ static struct {
     [FUSE_GETATTR]     = { do_getattr,     "GETATTR"     },
     [FUSE_SETATTR]     = { do_setattr,     "SETATTR"     },
     [FUSE_READLINK]    = { do_readlink,    "READLINK"    },
+    [FUSE_CANONICAL_PATH] = { do_canonical_path, "CANONICAL_PATH" },
     [FUSE_SYMLINK]     = { do_symlink,     "SYMLINK"     },
     [FUSE_MKNOD]       = { do_mknod,       "MKNOD"       },
     [FUSE_MKDIR]       = { do_mkdir,       "MKDIR"       },

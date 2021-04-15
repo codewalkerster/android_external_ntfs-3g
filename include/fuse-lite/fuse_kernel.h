@@ -190,6 +190,9 @@ enum fuse_opcode {
 	FUSE_BMAP          = 37,
 	FUSE_DESTROY       = 38,
 	FUSE_IOCTL         = 39,
+
+	/* Android specific operations */
+	FUSE_CANONICAL_PATH     = 2016,
 };
 
 /* The read buffer is required to be at least 8k, but may be much larger */
